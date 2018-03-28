@@ -9,16 +9,15 @@ import (
 )
 
 func LongestConsec(strarr []string, k int) string {
-	l := -1
-	maxS := ""
+	var s, largest string
+
 	for i := 0; i < len(strarr)-k+1; i++ {
-		s := strings.Join(strarr[i:i+k], "")
-		if len(s) > l {
-			maxS = s
-			l = len(s)
+		s = strings.Join(strarr[i:i+k], "")
+		if len(s) > len(largest) {
+			largest = s
 		}
 	}
-	return maxS
+	return largest
 }
 
 func dotest(strarr []string, k int, exp string) {
