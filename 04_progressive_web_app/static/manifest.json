@@ -1,0 +1,12 @@
+{
+  "short_name": "Urgent v4",
+  "name": "Urgent App v4",
+  "icons": [
+    {
+      "src": "logo_large.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/?launcher=desktop"
+}
