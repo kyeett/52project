@@ -8,5 +8,6 @@
       "sizes": "192x192"
     }
   ],
-  "start_url": "/?launcher=desktop"
+  "start_url": "/?launcher=desktop",
+  "display": "standalone"
 }
