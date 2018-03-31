@@ -4,6 +4,11 @@
    <title>My Prog App</title>
    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}" />
 </head>
+<style type="text/css">
+   body {
+      background-color: purple;
+   }
+</style>
 <body>
 <h1>Hello2</h1>
 <img src="{{ url_for('static', filename='logo_large.png') }}" />

@@ -1,6 +1,6 @@
 {
-  "short_name": "Urgent v4",
-  "name": "Urgent App v4",
+  "short_name": "Urgent v6",
+  "name": "Urgent App v6",
   "icons": [
     {
       "src": "logo_large.png",
@@ -9,5 +9,6 @@
     }
   ],
   "start_url": "/?launcher=desktop",
-  "display": "standalone"
+  "display": "standalone",
+  "background_color": "purple"
 }
