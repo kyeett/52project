@@ -23,7 +23,8 @@ But what happens more voters join in?
 | :------:  | ---------------------------------------             | ----------     |
 | 1         | Get a Flask app with pure websockets up and running | 45 min<br>(45) |
 | 2         | Enable debugging and reload in app                  | ?? (30)        |
-| 3         | Probagate state from client to screen               | 45 min<br>(44)   |
+| 3         | Probagate state from client to screen               | 45 min<br>(44) |
+| 4         | State from knob to screen                           | 10 min<br>(19) |
 
 
 

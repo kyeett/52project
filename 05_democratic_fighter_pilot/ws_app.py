@@ -31,6 +31,8 @@ def echo_socket(ws):
       ws.send(message)
 
 
+db = {}
+
 # Sends the client states to the browsers
 @sockets.route('/screen')
 def echo_socket(ws):
@@ -42,7 +44,7 @@ def echo_socket(ws):
       val = max(0, min(100, val))
       time.sleep(0.3)
 
-      ws.send(json.dumps({'value': val}))
+      ws.send(json.dumps({'value': db.get('knob', val)}))
 
 
 def format_client(params):
@@ -65,8 +67,10 @@ def client_socket(ws):
    logger.info('Args: %s' % client)
    while not ws.closed:
       message = ws.receive()
-      logger.info('Msg received: %s' % json.loads(message))
-
+      logger.error(message)
+      message_json = json.loads(message)
+      db['knob'] = message_json['value']
+      logger.info('Msg received: %s' % message_json)
       ws.send(message)
 
 
