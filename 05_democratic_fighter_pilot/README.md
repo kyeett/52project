@@ -19,10 +19,12 @@ But what happens more voters join in?
     
 ### Progress
 
-| Session # | Focus                                               | Time       |
-| :------:  | ---------------------------------------             | ---------- |
-| 1         | Get a Flask app with pure websockets up and running | 45 min     |
-|           |                                                     |            |
+| Session # | Focus                                               | Time           |
+| :------:  | ---------------------------------------             | ----------     |
+| 1         | Get a Flask app with pure websockets up and running | 45 min<br>(45) |
+| 2         | Enable debugging and reload in app                  | ?? (30)        |
+| 3         | Probagate state from client to screen               | 45 min<br>(44)   |
+
 
 
 ### References

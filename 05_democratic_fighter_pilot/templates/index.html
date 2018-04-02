@@ -8,6 +8,7 @@
    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+   <script src="{{url_for('static', filename='scripts.js')}}"></script>
 
 <style type="text/css">
 
@@ -54,10 +55,16 @@
 
 $(document).ready(function() {
 
-players = [{
-      x : 0,
-      y : 0,
-    }]
+var url = 'ws://' + document.domain + ':' + location.port + "/screen";
+
+players = [
+{ x : 0, y : 30},
+{ x : 0, y : 50}]
+
+
+WebSocketTest(url);
+
+
 var nPlayers = 1;
 
 // Box width
@@ -108,7 +115,6 @@ function drawGrid(ctxt){
 
 
   for (var y = gh; y <= height; y += gh) {
-    console.log(y);
       ctxt.moveTo(p, 0.5 + y + p);
       ctxt.lineTo(6*width + p, 0.5 + y + p);
   }
@@ -135,12 +141,13 @@ function update(){
     ctx.fillRect(width/2, 75*Math.cos(ship.y/20.0)+100, ship.width, ship.height);
     ctx.fillRect(width/2, ship.y, ship.width, ship.height);
 
-    ctx3.fillStyle = "red";
+    ctx3.fillStyle = "green";
     ctx3.fillRect(width/2+ship.x, 75*Math.cos(ship.y/20.0)+100, 3, 3);
 
-    for (var i = players.length - 1; i >= 0; i--) {
+    for (var i = 0; i < players.length; i++) {
       ctx3.fillStyle = "black";
-      ctx3.fillRect(width/2+ship.x+10, height - gh*players[i].y - gh/2, 3, 3);
+// console.log(players[1]);
+      ctx3.fillRect(width/2+ship.x+10, height - height*(players[i].y/100.0), 3, 3);
 
     }
 
