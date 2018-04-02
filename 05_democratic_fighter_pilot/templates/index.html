@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Democratic Fighter Pilot</title>
+   <script type="text/javascript" src="{{url_for('static', filename='live.js')}}"></script>
+   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+   <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+   <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+<style type="text/css">
+
+.positioner {
+  position: relative;
+  margin: 20px;
+  width:800px;
+  overflow: auto;
+}
+
+#background {
+  margin-left: 0px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- <canvas id="canvas" style="border:1px solid #000"></canvas> -->
+
+<div class="positioner" style="height:400px">
+<canvas id="canvas" width="400" height="400"
+   style="position: absolute; left: 0; top: 0; z-index: 2;"></canvas>
+ <canvas id="trail" width="4800" height="400"
+   style="position: absolute; left: 0; top: 0; z-index: 1;"></canvas>
+ <canvas id="background" width="4800" height="400"
+   style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
+</div>
+
+<div class="positioner" style="top: 0px">
+
+<input type="checkbox" data-toggle="toggle" id="player1" data-onstyle="primary">
+<input type="checkbox" data-toggle="toggle" data-onstyle="success">
+
+</div>
+
+<script>
+
+(function() {
+  var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+  window.requestAnimationFrame = requestAnimationFrame;
+})();
+
+
+$(document).ready(function() {
+
+players = [{
+      x : 0,
+      y : 0,
+    }]
+var nPlayers = 1;
+
+// Box width
+var width = 800;
+// Box height
+var height = 400;
+
+// Grid height;
+var gh = 400 / (nPlayers + 1)
+
+// Padding
+var p = 0;
+
+pHeight = 11;
+pWidth = 11;
+
+
+var canvas = document.getElementById("canvas"),
+    ctx = canvas.getContext("2d"),
+    ship = {
+      x : 0,
+      y : pHeight,
+      width : pWidth,
+      height : pHeight
+    },
+    keys = [];
+
+
+canvas.width = width;
+canvas.height = height;
+
+var canvas2 = document.getElementById("background"),
+    ctx2 = canvas2.getContext("2d");
+
+var canvas3 = document.getElementById("trail"),
+    ctx3 = canvas3.getContext("2d");
+
+// draw a small red box, which will eventually become our player.
+ctx.fillStyle = "red";
+ctx.fillRect(ship.x, ship.y, ship.width, ship.height);
+
+function drawGrid(ctxt){
+
+  for (var x = 40; x <= 6*width; x += 40) {
+      ctxt.moveTo(0.5 + x + p, p);
+      ctxt.lineTo(0.5 + x + p, height + p);
+  }
+
+
+  for (var y = gh; y <= height; y += gh) {
+    console.log(y);
+      ctxt.moveTo(p, 0.5 + y + p);
+      ctxt.lineTo(6*width + p, 0.5 + y + p);
+  }
+
+  ctxt.strokeStyle = "black";
+  ctxt.stroke();
+
+
+//  ctxt.rect(0,0,width + 1,height + 1);
+}
+
+
+function update(){
+  $("#background").css('margin-left', - ship.x + 'px')
+   $("#trail").css('margin-left', - ship.x + 'px')
+    // console.log("update");
+    // console.log(ship.y);
+    ctx.clearRect(0,0,width,height);
+    ship.x += 1;
+    ship.y += 1;
+    // player.y += 1;
+    // draw our player
+    ctx.fillStyle = "red";
+    ctx.fillRect(width/2, 75*Math.cos(ship.y/20.0)+100, ship.width, ship.height);
+    ctx.fillRect(width/2, ship.y, ship.width, ship.height);
+
+    ctx3.fillStyle = "red";
+    ctx3.fillRect(width/2+ship.x, 75*Math.cos(ship.y/20.0)+100, 3, 3);
+
+    for (var i = players.length - 1; i >= 0; i--) {
+      ctx3.fillStyle = "black";
+      ctx3.fillRect(width/2+ship.x+10, height - gh*players[i].y - gh/2, 3, 3);
+
+    }
+
+
+    $('#player1').change(function() {
+      console.log('Toggle: ' + $(this).prop('checked'));
+      players[0].y = $(this).prop('checked');
+    })
+
+
+    // run through the loop again
+    requestAnimationFrame(update);
+}
+
+window.addEventListener("load", function(){
+ update();
+});
+
+drawGrid(ctx2);
+
+});
+
+</script>
+<br>
+
+<!-- <input type="checkbox" data-toggle="toggle" data-onstyle="info">
+<input type="checkbox" data-toggle="toggle" data-onstyle="warning">
+<input type="checkbox" data-toggle="toggle" data-onstyle="danger">
+<input type="checkbox" data-toggle="toggle" data-onstyle="default"> -->
+
+</body>
+</html>

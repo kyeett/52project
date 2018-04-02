@@ -4,12 +4,28 @@
 
 When a user connects, the game begins as an uglier verson of Flappy Bird. The trajectory (y-axis) of the plane is controlled using a knob. Life is easy. Perhaps too easy?
 
-![many](one_voters_small.png)
+![many](doc/one_voters_small.png)
 
 Another player joins, and as democracy is the name of the game, that player also gets a vote. The average of the two votes controls the trajectory of the plane. As long as eveyone is aligned, democracy reigns supreme...
 
-![many](two_voters_small.png)
+![<main></main>ny](doc/two_voters_small.png)
 
 But what happens more voters join in?
 
-![many](many_voters_small.png)
+![many](doc/many_voters_small.png)
+
+
+
+    
+### Progress
+
+| Session # | Focus                                               | Time       |
+| :------:  | ---------------------------------------             | ---------- |
+| 1         | Get a Flask app with pure websockets up and running | 45 min     |
+|           |                                                     |            |
+
+
+### References
+* [flask-sockets](https://github.com/kennethreitz/flask-sockets) - websockets for Flask
+* [ws](https://github.com/hashrocket/ws) - simple cli for websockets 
+* 
